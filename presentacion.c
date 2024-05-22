@@ -8,29 +8,44 @@
 #include "gotoxy.h"
 
 
-#define H 8 ///PARED HORIZONTAL
-#define V 2 ///PARED VERTICAL
-#define E 9 ///ESQUINA SUPERIOR DERECHA
-#define Q 7 ///ESQUINA SUPERIOR IZQUIERDA
-#define C 3 ///ESQUINA INFERIOR DERECHA
-#define Z 1 ///ESQUINA INFERIOR IZQUIERDA
-#define K 11
-#define N 12
-#define B 13
-#define U 14
-#define J 15
-#define W 0
-#define M 0
-#define I 5
-#define L 0
-#define A 0
-#define O 0
-#define G 0
-#define F 0
-#define S 0
+// Definiciones de constantes para caracteres especiales
+#define H 1
+#define V 2
+#define Q 3
+#define Z 4
+#define C 5
+#define E 6
+#define I 7
+#define L 8
+#define K 9
+#define N 10
+#define B 11
+#define U 12
+#define J 13
+#define A 14
+#define F 15
 #define D 0
 
 #include "presentacion.h"
+
+/// funciones para implementar el uso de gotoxy, que determinan el tamanio de la consola y en base a eso se determinara gotoxy
+
+void getConsoleSize(int* ancho, int* altura){
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columnas, filas;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columnas = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    filas = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    *ancho = columnas;
+    *altura = filas;
+}
+
+void maximizeConsoleWindow() {
+    HWND consoleWindow = GetConsoleWindow();
+    ShowWindow(consoleWindow, SW_MAXIMIZE);
+}
 
 
 int matriz [30][70] ={
@@ -137,583 +152,83 @@ void autoCorriendo(int x, int y,int aceleracion){
     }
 }
 
-int presentacion2(int matriz[30][70], int x, int y){
+
+void printCharacter(int valor, int x, int y) {
+    gotoxy(x, y);
+    printf("\033[0;36m");
+    switch (valor) {
+        case H: printf("%c", 205); break;
+        case V: printf("%c", 186); break;
+        case Q: printf("%c", 201); break;
+        case Z: printf("%c", 200); break;
+        case C: printf("%c", 188); break;
+        case E: printf("%c", 187); break;
+        case I: printf("%c", 190); break;
+        case L: printf("%c", 64); break;
+        case K: printf("%c", 203); break;
+        case N: printf("%c", 204); break;
+        case B: printf("%c", 185); break;
+        case U: printf("%c", 206); break;
+        case J: printf("%c", 202); break;
+        case A: printf("%c", 255); break;
+        case F: printf("%c", 220); break;
+        case D: printf(" "); break;
+        default: break;
+    }
+}
+
+int presentacion2(int matriz[30][70], int x, int y) {
     int flag = 0;
-    int i=0;
-    int j=0;
-    for(j=15; j<45; j++)
-    {
-        printf("\033[0;36m");
-        x=j;
-        y=i;
-        if(matriz[i][j] == H)
-        {
-            gotoxy(x,y);
-            printf("%c", 205);
-        }
-        if(matriz[i][j] == V)
-        {
-            gotoxy(x,y);
-            printf("%c", 186);
-        }
-        if(matriz[i][j] == Q)
-        {
-            gotoxy(x,y);
-            printf("%c", 201);
-        }
-        if(matriz[i][j] == Z)
-        {
-            gotoxy(x,y);
-            printf("%c", 200);
-        }
-        if(matriz[i][j] == C)
-        {
-            gotoxy(x,y);
-            printf("%c", 188);
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf("%c", 187);
-        }
-        if(matriz[i][j] == I)
-        {
-            gotoxy(x,y);
-            printf("%c", 190);
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf("%c", 187);
-        }
-        if(matriz[i][j] == L)
-        {
-            gotoxy(x,y);
-            printf("%c", 64);
-        }
-        if(matriz[i][j] == K)
-        {
-            gotoxy(x,y);
-            printf("%c", 203);
-        }
-        if(matriz[i][j] == N)
-        {
-            gotoxy(x,y);
-            printf("%c", 204);
-        }
-        if(matriz[i][j] == B)
-        {
-            gotoxy(x,y);
-            printf("%c", 185);
-        }
-        if(matriz[i][j] == U)
-        {
-            gotoxy(x,y);
-            printf("%c", 206);
-        }
-        if(matriz[i][j] == J)
-        {
-            gotoxy(x,y);
-            printf("%c", 202);
-        }
-        if(matriz[i][j] == A)
-        {
-            gotoxy(x,y);
-            printf("%c",255);
-        }
-        if(matriz[i][j] == F)
-        {
-            gotoxy(x,y);
-            printf("%c",220);
-        }
-        if(matriz[i][j] == D)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        x=j;
-        y=i;
+
+    for (int j = 15; j < 45; j++) {
+        x = j;
+        y = 0; // Reiniciar y a 0 para la nueva columna
+        printCharacter(matriz[0][j], x, y);
         Sleep(1);
-        for(i=0; i<12; i++)
-        {
-            printf("\033[0;36m");
-            if(matriz[i][j] == H)
-            {
-                gotoxy(x,y);
-                printf("%c", 205);
-            }
-            if(matriz[i][j] == V)
-            {
-                gotoxy(x,y);
-                printf("%c", 186);
-            }
-            if(matriz[i][j] == Q)
-            {
-                gotoxy(x,y);
-                printf("%c", 201);
-            }
-            if(matriz[i][j] == Z)
-            {
-                gotoxy(x,y);
-                printf("%c", 200);
-            }
-            if(matriz[i][j] == C)
-            {
-                gotoxy(x,y);
-                printf("%c", 188);
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf("%c", 187);
-            }
-            if(matriz[i][j] == I)
-            {
-                gotoxy(x,y);
-                printf("%c", 190);
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf("%c", 187);
-            }
-            if(matriz[i][j] == L)
-            {
-                gotoxy(x,y);
-                printf("%c", 64);
-            }
-            if(matriz[i][j] == K)
-            {
-                gotoxy(x,y);
-                printf("%c", 203);
-            }
-            if(matriz[i][j] == N)
-            {
-                gotoxy(x,y);
-                printf("%c", 204);
-            }
-            if(matriz[i][j] == B)
-            {
-                gotoxy(x,y);
-                printf("%c", 185);
-            }
-            if(matriz[i][j] == U)
-            {
-                gotoxy(x,y);
-                printf("%c", 206);
-            }
-            if(matriz[i][j] == J)
-            {
-                gotoxy(x,y);
-                printf("%c", 202);
-            }
-            if(matriz[i][j] == A)
-            {
-                gotoxy(x,y);
-                printf("%c",255);
-            }
-            if(matriz[i][j] == F)
-            {
-                gotoxy(x,y);
-                printf("%c",220);
-            }
-            if(matriz[i][j] == D)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            x=j;
-            y=i;
+
+        for (int i = 1; i < 12; i++) {
+            y = i;
+            printCharacter(matriz[i][j], x, y);
         }
     }
+
     flag = 1;
     return flag;
 }
 
-int presentacion3(int matriz[30][70], int x, int y){
+int presentacion3(int matriz[30][70], int x, int y) {
     int flag = 0;
-    int i=12;
-    int j=0;
-    x=j;
-    y=i;
-    for(j=15; j<45; j++)
-    {
-        printf("\033[0;31m");
-        if(matriz[i][j] == H)
-        {
-            gotoxy(x,y);
-            printf("%c", 205);
-        }
-        if(matriz[i][j] == V)
-        {
-            gotoxy(x,y);
-            printf("%c", 186);
-        }
-        if(matriz[i][j] == Q)
-        {
-            gotoxy(x,y);
-            printf("%c", 201);
-        }
-        if(matriz[i][j] == Z)
-        {
-            gotoxy(x,y);
-            printf("%c", 200);
-        }
-        if(matriz[i][j] == C)
-        {
-            gotoxy(x,y);
-            printf("%c", 188);
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf("%c", 187);
-        }
-        if(matriz[i][j] == I)
-        {
-            gotoxy(x,y);
-            printf("%c", 190);
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf("%c", 187);
-        }
-        if(matriz[i][j] == L)
-        {
-            gotoxy(x,y);
-            printf("%c", 64);
-        }
-        if(matriz[i][j] == K)
-        {
-            gotoxy(x,y);
-            printf("%c", 203);
-        }
-        if(matriz[i][j] == N)
-        {
-            gotoxy(x,y);
-            printf("%c", 204);
-        }
-        if(matriz[i][j] == B)
-        {
-            gotoxy(x,y);
-            printf("%c", 185);
-        }
-        if(matriz[i][j] == U)
-        {
-            gotoxy(x,y);
-            printf("%c", 206);
-        }
-        if(matriz[i][j] == J)
-        {
-            gotoxy(x,y);
-            printf("%c", 202);
-        }
-        if(matriz[i][j] == A)
-        {
-            gotoxy(x,y);
-            printf("%c",255);
-        }
-        if(matriz[i][j] == F)
-        {
-            gotoxy(x,y);
-            printf("%c",220);
-        }
-        if(matriz[i][j] == D)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        x=j;
-        y=i;
 
+    for (int j = 15; j < 45; j++) {
+        x = j;
+        y = 12; // Reiniciar y a 12 para la nueva columna
+        printCharacter(matriz[12][j], x, y);
         Sleep(1);
-        for(i=12; i<24; i++)
-        {
-            printf("\033[0;31m");
-            if(matriz[i][j] == H)
-            {
-                gotoxy(x,y);
-                printf("%c", 205);
-            }
-            if(matriz[i][j] == V)
-            {
-                gotoxy(x,y);
-                printf("%c", 186);
-            }
-            if(matriz[i][j] == Q)
-            {
-                gotoxy(x,y);
-                printf("%c", 201);
-            }
-            if(matriz[i][j] == Z)
-            {
-                gotoxy(x,y);
-                printf("%c", 200);
-            }
-            if(matriz[i][j] == C)
-            {
-                gotoxy(x,y);
-                printf("%c", 188);
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf("%c", 187);
-            }
-            if(matriz[i][j] == I)
-            {
-                gotoxy(x,y);
-                printf("%c", 190);
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf("%c", 187);
-            }
-            if(matriz[i][j] == L)
-            {
-                gotoxy(x,y);
-                printf("%c", 64);
-            }
-            if(matriz[i][j] == K)
-            {
-                gotoxy(x,y);
-                printf("%c", 203);
-            }
-            if(matriz[i][j] == N)
-            {
-                gotoxy(x,y);
-                printf("%c", 204);
-            }
-            if(matriz[i][j] == B)
-            {
-                gotoxy(x,y);
-                printf("%c", 185);
-            }
-            if(matriz[i][j] == U)
-            {
-                gotoxy(x,y);
-                printf("%c", 206);
-            }
-            if(matriz[i][j] == J)
-            {
-                gotoxy(x,y);
-                printf("%c", 202);
-            }
-            if(matriz[i][j] == A)
-            {
-                gotoxy(x,y);
-                printf("%c",255);
-            }
-            if(matriz[i][j] == F)
-            {
-                gotoxy(x,y);
-                printf("%c",220);
-            }
-            if(matriz[i][j] == D)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            x=j;
-            y=i;
+
+        for (int i = 12; i < 24; i++) {
+            y = i;
+            printCharacter(matriz[i][j], x, y);
         }
     }
+
     flag = 1;
     return flag;
 }
 
-int borrarPresentacion(int matriz[30][70], int x, int y){
-    int flag = 0;
-    int i=0;
-    int j=0;
-    x=j;
-    y=i;
+void borrarPresentacion(int matriz[30][70], int x, int y) {
+    // Limpia cada posición de la matriz
+    for (int i = 0; i < 30; i++) {
+            Sleep(1);
+        for (int j = 0; j < 70; j++) {
+            // Calcula las coordenadas en la consola sumando las coordenadas iniciales
+            int posX = x + j;
+            int posY = y + i;
+            gotoxy(posX, posY);
 
-    for(j=0; j<70; j++)
-    {
-        if(matriz[i][j] == H)
-        {
-            gotoxy(x,y);
+            // Imprime un espacio en blanco para limpiar la posición
             printf(" ");
-        }
-        if(matriz[i][j] == V)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == Q)
-        {
-            gotoxy(x,y);
-            printf (" ");
-        }
-        if(matriz[i][j] == Z)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == C)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == I)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == E)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == L)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == K)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == N)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == B)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == U)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == J)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == A)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == F)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        if(matriz[i][j] == D)
-        {
-            gotoxy(x,y);
-            printf(" ");
-        }
-        x=j;
-        y=i;
-        Sleep(1);
-        for(i=0; i<30; i++)
-        {
-            if(matriz[i][j] == H)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == V)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == Q)
-            {
-                gotoxy(x,y);
-                printf (" ");
-            }
-            if(matriz[i][j] == Z)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == C)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == I)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == E)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == L)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == K)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == N)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == B)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == U)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == J)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == A)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == F)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            if(matriz[i][j] == D)
-            {
-                gotoxy(x,y);
-                printf(" ");
-            }
-            x=j;
-            y=i;
         }
     }
-    flag = 1;
-    return flag;
 }
 
 void tipeo2(const char * p,int ms){
@@ -746,30 +261,32 @@ void tipeo(const char * p,int ms){
     }
 }
 
-void presentacion(){
-    gotoxy(1,6);
+void presentacion(int x, int y){
+    gotoxy((x/2)-30,y/2);
     tipeo2("BIENVENIDO/A A AUTOMILE, SU COCHERA DE CONFIANZA\n\n",10);
-    gotoxy(1,12);
+    gotoxy((x/2)-30,(y/2)+5);
     Sleep(500);
     system("pause");
 }
 
 void intro(){
+
     int x=0;
-    int y=30;
+    int y=0;
+    maximizeConsoleWindow();
+    getConsoleSize(&x,&y);
+
     int color = 37;
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
-    SMALL_RECT rect = {30, 20, 109, 54};
-    SetConsoleWindowInfo(hConsole, TRUE, &rect);
     GetConsoleCursorInfo(hConsole, &cursorInfo);
     cursorInfo.bVisible = FALSE; // Oculta el cursor
     SetConsoleCursorInfo(hConsole, &cursorInfo);
     int flag = 0;
     system("cls");
-    gotoxy(6,10);
+    getConsoleSize(&x,&y);
     Sleep(100);
-    presentacion();
+    presentacion(x,y);
     system("cls");
     tipeo("Accediendo al menu principal",10);
     Sleep(1000);
@@ -779,8 +296,8 @@ void intro(){
 
     while(flag!=1)
     {
-        presentacion2(matriz, x, y);
-        presentacion3(matriz, x, y);
+        presentacion2(matriz, x/2, y/2);
+        presentacion3(matriz, x/2, y/2);
         fflush(stdin);
         x=0;
         y=23;

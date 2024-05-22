@@ -10,27 +10,23 @@
 #include "gotoxy.h"
 
 
-#define H 8 ///PARED HORIZONTAL
-#define V 2 ///PARED VERTICAL
-#define E 9 ///ESQUINA SUPERIOR DERECHA
-#define Q 7 ///ESQUINA SUPERIOR IZQUIERDA
-#define C 3 ///ESQUINA INFERIOR DERECHA
-#define Z 1 ///ESQUINA INFERIOR IZQUIERDA
-#define K 11
-#define N 12
-#define B 13
-#define U 14
-#define J 15
-#define W 0
-#define M 0
-#define I 5
-#define L 0
-#define A 0
-#define O 0
-#define G 0
-#define F 0
-#define S 0
-#define D 0
+// Definiciones de constantes para caracteres especiales
+#define H 1
+#define V 2
+#define Q 3
+#define Z 4
+#define C 5
+#define E 6
+#define I 7
+#define L 8
+#define K 9
+#define N 10
+#define B 11
+#define U 12
+#define J 13
+#define A 14
+#define F 15
+#define D 16
 
 void ocultarCursor();
 
@@ -46,7 +42,7 @@ int presentacion2(int matriz[30][70], int x, int y);
 
 int presentacion3(int matriz[30][70], int x, int y);
 
-int borrarPresentacion(int matriz[30][70], int x, int y);
+void borrarPresentacion(int matriz[30][70], int x, int y);
 
 void tipeo2(const char * p,int ms);
 
