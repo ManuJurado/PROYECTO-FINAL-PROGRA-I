@@ -28,6 +28,8 @@
 #define F 15
 #define D 16
 
+
+
 void ocultarCursor();
 
 void mostrarAutito(int matriz[6][37],int x,int y);
@@ -36,9 +38,9 @@ void printearAuto(int x, int y);
 
 void borrarAuto(int x, int y);
 
-void autoCorriendo(int x, int y,int aceleracion);
+void autoCorriendo(int x, int y,int aceleracion, int anchoConsola, int altoConsola);
 
-int presentacion2(int matriz[30][70], int x, int y);
+int presentacion2(int matriz[30][70], int startX, int startY, int *posFinalX,int *posFinalY);
 
 int presentacion3(int matriz[30][70], int x, int y);
 
@@ -51,5 +53,7 @@ void tipeo(const char * p,int ms);
 void presentacion();
 
 void intro();
+
+
 
 #endif // PRESENTACION_H_INCLUDED
