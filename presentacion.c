@@ -10,6 +10,7 @@
 
 
 
+
 // Definiciones de constantes para caracteres especiales
 #define H 1
 #define V 2
@@ -169,6 +170,8 @@ void autoCorriendo(int x, int y,int aceleracion, int anchoConsola, int altoConso
     x=60;
     y=0;
     gotoxy(x,y);
+    printearAuto(x, y);
+    Sleep(3000);
     while(altoConsola>y+13 && x + 60 < anchoConsola)
     {
         printearAuto(x, y);
@@ -254,6 +257,7 @@ void borrarPresentacion(int matriz[30][70], int x, int y) {
 }
 
 void intro() {
+    const char* archivoMP3 = "carengine.wav";
     int anchoConsola =0;
     int altoConsola =0;
     maximizeConsoleWindow();
@@ -293,6 +297,8 @@ void intro() {
         // Resetear posiciones para autoCorriendo
         x = 0;
         y = altoConsola * 0.3;
+
+        PlaySoundA(archivoMP3,NULL,SND_ASYNC);
         Sleep(1000);
         autoCorriendo(x, y, 80,anchoConsola,altoConsola);
 
@@ -304,9 +310,9 @@ void intro() {
         x = 0;
         y = 0;
         gotoxy(x, y);
-        Sleep(5500);
+        Sleep(2000);
 
-
+        system("cls");
 
         flag = 1;
     }

@@ -8,6 +8,7 @@
 #include <conio.h>
 #include <windows.h>
 #include "gotoxy.h"
+#include <mmsystem.h>
 
 
 // Definiciones de constantes para caracteres especiales
