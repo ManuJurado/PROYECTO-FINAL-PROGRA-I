@@ -29,7 +29,13 @@
 #define F 15
 #define D 16
 
+struct PosicionActual
+{
+    int x;
+    int y;
+};
 
+struct PosicionActual posicionActual;
 
 void ocultarCursor();
 
@@ -39,11 +45,11 @@ void printearAuto(int x, int y);
 
 void borrarAuto(int x, int y);
 
-void autoCorriendo(int x, int y,int aceleracion, int anchoConsola, int altoConsola);
+void autoCorriendo(struct PosicionActual *posicionActual,int altoConsola,int anchoConsola);
 
-int presentacion2(int matriz[30][70], int startX, int startY, int *posFinalX,int *posFinalY);
+int presentacion2(int matriz[30][70], struct PosicionActual *posicionActualX, struct PosicionActual *posicionActualY);
 
-int presentacion3(int matriz[30][70], int x, int y);
+int presentacion3(int matriz[30][70], struct PosicionActual *posicionActualX, struct PosicionActual *posicionActualY);
 
 void borrarPresentacion(int matriz[30][70], int x, int y);
 
