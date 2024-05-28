@@ -7,12 +7,17 @@
 #include "pthread.h"
 #include "conio.h"
 
+#define A 219
+#define B 178
+#define C 177
+#define D 176
+
 #define MUTEXLOCK pthread_mutex_lock(&key_mutex)
 #define MUTEXUNLOCK pthread_mutex_unlock(&key_mutex)
 
 // Variables globales para almacenar la tecla y un flag de acción
-volatile char global_key = 0;
-volatile int capturing = 1;
+extern volatile char global_key;
+extern volatile int capturing;
 pthread_mutex_t key_mutex; // Mutex para proteger la variable global
 
 void flush_stdin();
