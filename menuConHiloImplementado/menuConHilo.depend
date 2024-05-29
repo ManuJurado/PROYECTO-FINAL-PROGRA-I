@@ -1,0 +1,65 @@
+# depslib dependency file v1.0
+1716986267 source:c:\users\manu\onedrive\escritorio\menuconhilo\funcioneshilospmenu.c
+	<stdio.h>
+	<stdlib.h>
+	"FuncionesHilosPMenu.h"
+
+1716981396 c:\users\manu\onedrive\escritorio\menuconhilo\funcioneshilospmenu.h
+	"windows.h"
+	"gotoxy.h"
+	"semaphore.h"
+	"pthread.h"
+	"conio.h"
+	"signal.h"
+
+1491399894 c:\users\manu\onedrive\escritorio\menuconhilo\gotoxy.h
+
+1491400448 source:c:\users\manu\onedrive\escritorio\menuconhilo\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1716986890 source:c:\users\manu\onedrive\escritorio\menuconhilo\menu.c
+	"menu.h"
+	"gotoxy.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	"FuncionesHilosPMenu.h"
+
+1716930987 c:\users\manu\onedrive\escritorio\menuconhilo\menu.h
+
+1716983864 source:c:\users\manu\onedrive\escritorio\menuconhilo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"menu.h"
+	"FuncionesHilosPMenu.h"
+
+1716984548 source:c:\users\manu\onedrive\escritorio\menuconhilo\presentacion.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+	"pthread.h"
+	"semaphore.h"
+	"presentacion.h"
+
+1716981396 c:\users\manu\onedrive\escritorio\menuconhilo\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
