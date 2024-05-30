@@ -249,13 +249,14 @@ void borrarAuto(int x, int y)
 
 void autoCorriendo(struct PosicionActual *posicionActual,int altoConsola,int anchoConsola)
 {
-    int velocidad = 1000;
-    int aceleracion = 100;
+    int velocidad = 3000;
+    int aceleracion = 80;
     printf("\033[0;31m");
-    posicionActual->x=60;
+    posicionActual->x=anchoConsola/4;
     posicionActual->y=0;
+
+
     printearAuto(posicionActual->x, posicionActual->y);
-    Sleep(3000);
     while(altoConsola>posicionActual->y+13 && posicionActual->x + 60 < anchoConsola)
     {
         printearAuto(posicionActual->x, posicionActual->y);

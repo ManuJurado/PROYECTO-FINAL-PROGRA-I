@@ -26,6 +26,7 @@ int mainMenu(int anchoConsola, int altoConsola)
 {
     char dni[MAX_CARACTERES], contra[MAX_CARACTERES], opcion;
     int flag, intentos = 0, ingreso;
+    menuInicio(anchoConsola,altoConsola);
 
     do
     {
@@ -60,8 +61,11 @@ int mainMenu(int anchoConsola, int altoConsola)
                 //else
                 {
                     //guardarDatosUsuario(dni);   /// En arreglo dinámico.
+                    MUTEXLOCK;
+                    gotoxy(anchoConsola/2-34,altoConsola/2-9);
                     printf("Usuario guardado satisfactoriamente.");
                     printf("Ingreses sesi%cn para continuar...", 162);
+                    MUTEXUNLOCK;
 
                     MUTEXLOCK;
                     gotoxy(anchoConsola/2-34,altoConsola/2-10);
@@ -98,7 +102,6 @@ int inicio(int x, int y)
 {
     int flag = 0;
     char opcion;
-    menuInicio(x,y);
 
     do
     {
@@ -108,16 +111,7 @@ int inicio(int x, int y)
         {
             if (opcion == -32)
             {
-                while (1)
-                {
-                    opcion = getch();
-//                    last_key = 0; // Resetear la tecla después de capturarla
-                    if (opcion == 75 || opcion == 77)
-                    {
-                        break;
-                    }
-                    Sleep(10); // Pequeña espera para no consumir demasiada CPU
-                }
+                opcion = getch();
                 switch (opcion)
                 {
                 case (75):      //Crear Usuario. izquierda
@@ -149,7 +143,6 @@ int inicio(int x, int y)
 
 }
 
-
 void menuInicio(int x, int y)
 {
     CLEAN;
@@ -178,7 +171,8 @@ void cursosClean(int ver)
     SetConsoleCursorInfo(hConsole, &cursorInfo);
 }
 
-void cuadroMenuInstantaneo(int x, int y){
+void cuadroMenuInstantaneo(int x, int y)
+{
     int centrox = x/2 - ANCHO/2;
     int centroy = y/2 - ALTO/2;
 
@@ -223,7 +217,7 @@ void cuadroMenu(int x, int y)
     for (int renglon=0; renglon<ANCHO; renglon++)
     {
         printf("%c",205);   // ═
-        Sleep(1);
+        Sleep(20);
     }
     printf("%c\n",187);     // ╗
 
@@ -237,7 +231,7 @@ void cuadroMenu(int x, int y)
             printf(" ");
         }
         printf("%c\n",186); // ║
-        Sleep(1);
+        Sleep(20);
     }
 
     gotoxy(centrox,centroy+ALTO);
@@ -245,7 +239,7 @@ void cuadroMenu(int x, int y)
     for (int renglon=0; renglon<ANCHO; renglon++)
     {
         printf("%c",205);   // ═
-        Sleep(1);
+        Sleep(20);
     }
     printf("%c\n",188);     // ╝
 }
@@ -444,7 +438,8 @@ void crearUsuario(int x, int y, char dni[], char contra[])
             printf("Las contrase%cas son diferentes. Por favor reintente...", 164);
             MUTEXUNLOCK;
         }
-    }while(strcmp(contra,auxContra)!=0);
+    }
+    while(strcmp(contra,auxContra)!=0);
 }
 
 void cuadroEscritura(int x,int y)
