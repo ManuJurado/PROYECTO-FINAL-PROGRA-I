@@ -13,6 +13,45 @@
 #define COMPROBAR if(archiV==NULL){printf("El archivo no puede ser abierto.");}
 #define ARCHI_VEHICULOS "Vehiculos.dat"
 
+//Funcion inicial donde vamos a leer en el archivo la cantidad de vehiculos activos,
+//que posteriormente cargaremos en el arreglo dinamico para trabajar en las consultas.
+int leerArchiVehiculos(Vehiculo **vehiculos)
+{
+    FILE *archiV = fopen(ARCHI_VEHICULOS, "rb");
+    int cantVehiculos, cont = 0;
+    Vehiculo aux;
+
+    COMPROBAR;
+
+    if (archiV!= NULL)
+    {
+        while(fread((&aux), sizeof(Vehiculo), 1, archiV))
+        {
+            if(aux.activo == 1)
+            {
+                cantVehiculos++;
+                mostrarVehiculo(aux);//LUEGO BORRAR ESTA LINEA, ESTA A MODO DE PRUEBA PARA VERIFICAR LOS DATOS AL EJECUTAR
+            }
+        }
+
+        fseek(archiV, 0, SEEK_SET);
+
+        *vehiculos = (Vehiculo*)malloc(cantVehiculos * sizeof(Vehiculo));
+
+        while(fread(&aux, sizeof(Vehiculo), 1, archiV) && cont<(cantVehiculos+1))
+        {
+            if(aux.activo == 1)
+            {
+                (*vehiculos)[cont] = aux;
+                cont++;
+            }
+        }
+        fclose(archiV);
+    }
+
+    return cantVehiculos;
+}
+
 /**
 1. Gestión de Vehículos:
  - Agregar / modificar un vehículo. (Cuando se agrega, está disponible para alquilar.)
@@ -21,18 +60,60 @@
  - Si es una modificación, permitir cambiar cualquiera de estos datos excepto la patente.
 */
 
+// Función para validar si todos los caracteres en una cadena son letras
+int sonLetras(char str[])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        if (!isalpha(str[i]))
+        {
+            return 0; // Falso
+        }
+    }
+    return 1; // Verdadero
+}
+
+// Función para validar si todos los caracteres en una cadena son dígitos
+int sonNumeros(char str[])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        if (!isdigit(str[i]))
+        {
+            return 0; // Falso
+        }
+    }
+    return 1; // Verdadero
+}
+
 //Ingreso de Patente
 void cargaPatente(Patente *pat)
 {
-    char auxLetras[3];
-    char auxNumeros[3];
+    char auxLetras[4];
+    char auxNumeros[4];
 
-    printf("\nIngrese la PATENTE del vehiculo (formato BBB999):\n> ");
-    FF;
-    gets((*pat).letras);
-    printf("> ");
-    FF;
-    gets((*pat).numeros);
+    do
+    {
+        printf("\nIngrese la PATENTE del vehiculo (formato BBB999):\n> ");
+        FF;
+        gets(&auxLetras);
+        printf("> ");
+        FF;
+        gets(&auxNumeros);
+
+        if (!sonLetras(auxLetras) || !sonNumeros(auxNumeros))
+        {
+            printf("Error en el formato ingresado. Las letras deben ser alfabeticas y los numeros deben ser digitos.\n");
+        }
+        else
+        {
+            // Copiar los valores a la estructura Patente
+            strcpy(pat->letras, auxLetras);
+            strcpy(pat->numeros, auxNumeros);
+        }
+
+    }
+    while (!sonLetras(auxLetras) || !sonNumeros(auxNumeros));
 }
 
 //Ingreso de Marca
@@ -56,6 +137,39 @@ void cargaAnio(int *anio)
 {
     int min = 1950;
     int max = 2024;
+    char auxAnioString[5]; // Suficientemente grande para un año + terminador nulo
+    int auxAnioInt;
+
+    do
+    {
+        printf("\nIngrese el ANIO de fabricacion del vehiculo (entre %d y %d):\n> ", min, max);
+        scanf("%s", auxAnioString);
+
+        if (sonNumeros(auxAnioString))
+        {
+            auxAnioInt = atoi(auxAnioString); // Convertir la cadena a entero
+            if (auxAnioInt >= min && auxAnioInt <= max)
+            {
+                *anio = auxAnioInt;
+                break;
+            }
+            else
+            {
+                printf("\nEl anio ingresado no esta dentro del rango permitido. Intente nuevamente.\n");
+            }
+        }
+        else
+        {
+            printf("\nEntrada invalida. Por favor, ingrese un numero entero.\n");
+        }
+    }
+    while (1);    // Bucle infinito hasta que se ingrese un dato válido
+}
+/* NO FUNCIONA PORQUE NO VALIDA QUE SEA UN DATO DE DIGITOS ENTEROS
+void cargaAnio(int *anio)
+{
+    int min = 1950;
+    int max = 2024;
     int auxAnio;
 
     do
@@ -75,7 +189,40 @@ void cargaAnio(int *anio)
     }
     while (auxAnio < min || auxAnio > max);     //Se solicita la carga en un bucle do-while para que el usuario intente la carga hasta que ingrese un dato valido
 }
+*/
+void cargaKms(int *kms)
+{
+    int min = 0;
+    int max = 300000;
+    char auxKmsString[7]; // Suficientemente grande para un kilometraje + terminador nulo
+    int auxKmsInt;
 
+    do
+    {
+        printf("\nIngrese el KILOMETRAJE del vehiculo (entre %d y %d):\n> ", min, max);
+        scanf("%s", auxKmsString);
+
+        if (sonNumeros(auxKmsString))
+        {
+            auxKmsInt = atoi(auxKmsString); // Convertir la cadena a entero
+            if (auxKmsInt >= min && auxKmsInt <= max)
+            {
+                *kms = auxKmsInt;
+                break;
+            }
+            else
+            {
+                printf("\nEl kilometraje ingresado no es correcto. Intente nuevamente.\n");
+            }
+        }
+        else
+        {
+            printf("\nEntrada invalida. Por favor, ingrese un numero entero.\n");
+        }
+    }
+    while (1);    // Bucle infinito hasta que se ingrese un dato válido
+}
+/*
 //Ingreso de Kilometraje
 void cargaKms(int *kms)
 {
@@ -100,7 +247,7 @@ void cargaKms(int *kms)
     }
     while (auxKms < min || auxKms > max);
 }
-
+*/
 //Ingreso de Precio de Alquiler por dia
 void cargaPrecioDiario(float *precioDeAlquilerDiario)
 {
@@ -167,9 +314,8 @@ void cargaTipo(char *tipoVehiculo)
 Vehiculo ingresoVehiculo()
 {
     Vehiculo vehi;
-    Patente pat;
 
-    cargaPatente(&pat);
+    cargaPatente(&(vehi.patente));
     cargaMarca(&(vehi.marca));
     cargaModelo(&(vehi.modelo));
     cargaAnio(&(vehi.anio));
@@ -178,8 +324,8 @@ Vehiculo ingresoVehiculo()
     cargaTipo(&(vehi.tipoVehiculo));
     vehi.disponibilidad = 1;
     vehi.activo = 1;
-
-    printf("\nPatente: %s", pat.letras, pat.numeros);
+    /*
+    printf("\nPatente: %s%s", vehi.patente.letras, vehi.patente.numeros);
     printf("\nMarca: %s", vehi.marca);
     printf("\nModelo: %s", vehi.modelo);
     printf("\nAnio: %i", vehi.anio);
@@ -200,36 +346,49 @@ Vehiculo ingresoVehiculo()
     }
     else
     {
-        printf("\nEl Vehiculo ha sido ELIMINADO del archivo.");
+        printf("\nEl Vehiculo ha sido ELIMINADO.");
     }
-
     printf("\n\n");
-
+    */
+    return vehi;
 }
 
 //Funcion para agregar la estructura de vehiculo cargada al archivo y al arreglo dinamico
-int agregarVehiculo(Vehiculo **cocheNuevo)
+agregarVehiculo(Vehiculo **vehiculos, int *cantVehiculos, Vehiculo nuevoVehiculo)
 {
     FILE *archiV;
-    archiV = fopen(ARCHI_VEHICULOS, "ab");
+    archiV = fopen(ARCHI_VEHICULOS, "r+b");
 
     char op;
-    int cantVehiculos;
     Vehiculo vehiculo;
     Patente patente;
+
+    //Redimensionar el arreglo dinámico para agregar el nuevo vehiculo
+    *vehiculos = (Vehiculo *)realloc(*vehiculos, (*cantVehiculos + 1) * sizeof(Vehiculo));
+    if (*vehiculos == NULL)
+    {
+        printf("Error al redimensionar el arreglo...");
+        fclose(archiV);
+        return;
+    }
 
     COMPROBAR;
     if(archiV != NULL)
     {
         do
         {
-            ingresoVehiculo();
-            //AGREGAR INFORMACION EN ARREGLO DINAMICO Y REVISAR QUE DATOS DEBO AGREGAR EN LOS PARAMETROS DE LA FUNCION
+            //Agregar el nuevo vehiculo al final del arreglo dinamico
+            nuevoVehiculo = ingresoVehiculo();
 
+            (*vehiculos)[*cantVehiculos] = nuevoVehiculo;
 
-            cantVehiculos++;
+            (*cantVehiculos)++;
 
-            printf("\nContinuar cargando alumnos? (ESC para finalizar)\n");
+            //Mover el puntero del archivo al final y escribir el nuevo vehiculo
+            fseek(archiV, 0, SEEK_END);
+            fwrite(&nuevoVehiculo, sizeof(Vehiculo), 1, archiV);
+
+            printf("\nIngrese ESC si no desea cargar otro vehiculo.\n");
             FF;
             op = getch();
         }
@@ -241,7 +400,51 @@ int agregarVehiculo(Vehiculo **cocheNuevo)
     return cantVehiculos;
 }
 
+//Funciones para printear los datos
+void mostrarVehiculo(Vehiculo vehi)
+{
+    printf("\nPatente: %s", vehi.patente.letras, vehi.patente.numeros);
+    printf("\nMarca: %s", vehi.marca);
+    printf("\nModelo: %s", vehi.modelo);
+    printf("\nAnio: %i", vehi.anio);
+    printf("\nKilometraje: %ikms", vehi.kms);
+    printf("\nPrecio de alquiler por dia: $%.2f", vehi.precioDeAlquilerDiario);
+    printf("\nTipo de Vehiculo: %s", vehi.tipoVehiculo);
+    if(vehi.disponibilidad == 1)
+    {
+        printf("\nVehiculo Disponible.");
+    }
+    else
+    {
+        printf("\nVehiculo NO Disponible.");
+    }
+    if(vehi.activo == 1)
+    {
+        printf("\nVehiculo Activo.");
+    }
+    else
+    {
+        printf("\nEl Vehiculo ha sido ELIMINADO.");
+    }
+    printf("\n\n");
+}
 
+void leerRegistroVehiculos(Vehiculo *vehiculos)
+{
+    FILE *archiV;
+    archiV = fopen (ARCHI_VEHICULOS, "rb");
+
+    COMPROBAR;
+    if (archiV != NULL)
+    {
+        printf("\nVehiculos disponibles: \n");
+        while (fread(&vehiculos, sizeof(Vehiculo), 1, archiV) > 0)
+        {
+            //mostrarRegistro(&vehiculos);
+        }
+        fclose(archiV);
+    }
+}
 
 /**
  - Ver listado de vehículos (marca, modelo, patente, tipo).

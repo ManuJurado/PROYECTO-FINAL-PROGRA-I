@@ -23,14 +23,20 @@ typedef struct
 } Vehiculo;
 
 ///PROTOTIPADOS
-
+int leerArchiVehiculos(Vehiculo **vehiculos);
+int sonLetras(char str[]);
+int sonNumeros(char str[]);
+void cargaPatente(Patente *pat);
 void cargaMarca(char *marca);
 void cargaModelo(char *modelo);
 void cargaAnio(int *anio);
 void cargaKms(int *kms);
 void cargaPrecioDiario(float *precioDeAlquilerDiario);
 void cargaTipo(char *tipoVehiculo);
-
+Vehiculo ingresoVehiculo();
+agregarVehiculo(Vehiculo **vehiculos, int *cantVehiculos, Vehiculo nuevoVehiculo);
+void mostrarVehiculo(Vehiculo vehi);
+void leerRegistroVehiculos(Vehiculo *vehiculos);
 
 
 #endif // VEHICULOS_H_INCLUDED
