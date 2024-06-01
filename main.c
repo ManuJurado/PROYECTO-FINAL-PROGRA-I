@@ -7,40 +7,23 @@
 #include <time.h>
 #include "Vehiculos.h"
 
-#define FF fflush(stdin)
-#define ESC 27
-#define CLEAN system("cls")
-#define COMPROBAR if(archiV==NULL){printf("El archivo no puede ser abierto.");}
-#define ARCHI_VEHICULOS "Vehiculos.dat"
 
 void menuVehiculos();
 
 int main()
 {
-
-    Vehiculo arrDin_VEHICULOS[100];
-
     menuVehiculos();
 
     return 0;
 }
 
-void menuVehiculos(char arrDin_VEHICULOS[])
+void menuVehiculos()
 {
-    int cantVehiculos, ABM = 0;
-    Vehiculo *vehiculos;
+    int ABM = 0;
     char op;
-    Vehiculo nuevoVehiculo;
 
-    cantVehiculos = leerArchiVehiculos(&vehiculos);
+    leerArchiVehiculos();
     printf("\nCantidad de vehiculos: %i\n\n", cantVehiculos);
-
-    //PRUEBA PARA VER SI EL ARREGLO ESTA BIEN CARGADO
-    for(int i=0; i<cantVehiculos; i++)
-    {
-        printf("\n %i \n", i);
-        //mostrarVehiculo(arrDin_VEHICULOS[i]); REVISAR FUNCION
-    }
 
     do
     {
@@ -56,19 +39,19 @@ void menuVehiculos(char arrDin_VEHICULOS[])
         switch(ABM)
         {
             case (1):
-                agregarVehiculo(&vehiculos, &cantVehiculos, nuevoVehiculo);
+                agregarVehiculo();
             break;
 
             case (2):
-                leerRegistroVehiculos(&vehiculos);
+                leerRegistroVehiculos();
             break;
 
             case (3):
-
+                modificarVehiculo();
             break;
 
             case (4):
-
+                //eliminarVehiculo();
             break;
 
             case (5):
