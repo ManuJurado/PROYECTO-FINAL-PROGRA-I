@@ -25,7 +25,7 @@ int need_selectCrearUsuario = 0;
 int mainMenu(int anchoConsola, int altoConsola)
 {
     char dni[MAX_CARACTERES], contra[MAX_CARACTERES], opcion;
-    int flag, intentos;
+    int flag;
 
     do
     {
@@ -54,31 +54,28 @@ int mainMenu(int anchoConsola, int altoConsola)
                 }
                 else
                 {
-                    MUTEXLOCK;
                     guardarDatosUsuario(anchoConsola,altoConsola,dni,contra);   /// En arreglo dinámico.
+
+                    MUTEXLOCK;
                     gotoxy(anchoConsola/2-33,altoConsola/2-10);
                     printf("ESCAPE para volver hacia atr%cs / C para crear otro usuario...",160);
                     MUTEXUNLOCK;
 
                     opcion = getch();
-                    flag = (opcion == 27) ? 0 : 1;
+                    flag = !(opcion == 27);
                 }
             }
             while (flag == 1);
         }
         else if (flag == 2)
         {
-            intentos = 0;
-            do
-            {
-                flag = ingresaUsuario(anchoConsola,altoConsola,&intentos);
-            }
-            while (flag != 2 && intentos<3);
+            flag = ingresaUsuario(anchoConsola,altoConsola);
 
             if (flag == 1)
             {
-                MUTEXLOCK;
                 cuadroMenuInstantaneo(anchoConsola,altoConsola);
+
+                MUTEXLOCK;
                 gotoxy(anchoConsola/2-33,altoConsola/2-9);
                 printf("Haz superado la cantidad m%cxima de intentos.",160);
                 gotoxy(anchoConsola/2-33,altoConsola/2-7);
@@ -89,14 +86,11 @@ int mainMenu(int anchoConsola, int altoConsola)
             }
             else  //flag = 2  ->  Ingresa sesión.
             {
-                if (/*tipoUsuario(dni)*/1)
-                    menuOpcionesDeAdmin();
-                else
-                    menuOpcionesDeUsuario();
+                (/*tipoUsuario(dni)*/1) ? menuOpcionesDeAdmin() : menuOpcionesDeUsuario();
 
                 MUTEXLOCK;
                 gotoxy(anchoConsola/2-33,altoConsola/2-8);
-                printf("Presione cualquier tecla para salir al men%c principal...",163);
+                printf("Presione cualquier tecla para salir al men%c principal...",163); // Borrar.
                 MUTEXUNLOCK;
 
                 opcion = getch();
@@ -163,8 +157,9 @@ void menuInicio(int x, int y)
     CLEAN;
     cursosClean(0);
     Sleep(100);
-    MUTEXLOCK;
     cuadroMenuInstantaneo(x,y);
+
+    MUTEXLOCK;
     tituloMenu(x,y);
     detallesMenu(x,y);
     MUTEXUNLOCK;
@@ -191,6 +186,7 @@ void cuadroMenuInstantaneo(int x, int y)
     int centrox = x/2 - ANCHO/2;
     int centroy = y/2 - ALTO/2;
 
+    MUTEXLOCK;
     gotoxy(centrox,centroy-1);
     printf("\033[0;37m");
     printf("%c",201);    // ╔
@@ -219,6 +215,7 @@ void cuadroMenuInstantaneo(int x, int y)
         printf("%c",205);   // ═
     }
     printf("%c\n",188);     // ╝
+    MUTEXUNLOCK;
 }
 
 void cuadroMenu(int x, int y)
@@ -427,9 +424,7 @@ void crearUsuario(int x, int y, char dni[], char contra[])
     int centroy = y/2;
     char auxContra[MAX_CARACTERES];
 
-    MUTEXLOCK;
     cuadroMenuInstantaneo(x,y);
-    MUTEXUNLOCK;
 
     do
     {
@@ -466,7 +461,6 @@ void guardarDatosUsuario(int x, int y, char dniusu[], char contrasenia[])
 
     cuadroMenuInstantaneo(x,y);
 
-    MUTEXUNLOCK;
     textoCuadro(centrox-4,centroy-5,"Nombre:");
     textoCuadro(centrox-4,centroy-1,"Telefono:");
     textoCuadro(centrox-4,centroy+3,"Direccion:");
@@ -479,8 +473,9 @@ void guardarDatosUsuario(int x, int y, char dniusu[], char contrasenia[])
 
     //guardarUsuario(per);
 
-    MUTEXLOCK;
     cuadroMenuInstantaneo(x,y);
+
+    MUTEXLOCK;
     gotoxy(centrox-26,centroy-2);
     printf("Usuario guardado satisfactoriamente.");
     gotoxy(centrox-26,centroy+2);
@@ -517,17 +512,15 @@ void cuadroEscritura(int x,int y)
     printf("%c",217);
 }
 
-int ingresaUsuario(int x, int y, int *intentos)
+int ingresaUsuario(int x, int y)
 {
     int centrox = x/2 - 25;
     int centroy = y/2 + 2;
     char dni[MAX_CARACTERES], contra[MAX_CARACTERES];
-    int ingreso = 2; //borrar luego de tener la funcion "registraUsuario"
+    int ingreso = 2, intentos = 0; //borrar luego de tener la funcion "registraUsuario"
 
-    MUTEXLOCK;
+
     cuadroMenuInstantaneo(x,y);
-    MUTEXUNLOCK;
-
     do
     {
         textoCuadro(centrox+22,centroy-5,"DNI de usuario:");
@@ -547,7 +540,7 @@ int ingresaUsuario(int x, int y, int *intentos)
             break;
 
         case (1):
-            (*intentos)++;
+            intentos++;
             MUTEXLOCK;
             gotoxy(centrox-8,centroy+6);
             printf("Contrase%ca incorrecta. Intente nuevamente.", 164);
@@ -563,7 +556,7 @@ int ingresaUsuario(int x, int y, int *intentos)
             break;
         }
     }
-    while(*intentos < 3 && ingreso != 2);
+    while(intentos < 3 && ingreso != 2);
 
     return ingreso;
 }
