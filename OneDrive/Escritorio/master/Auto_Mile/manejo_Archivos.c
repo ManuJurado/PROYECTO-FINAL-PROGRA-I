@@ -119,11 +119,9 @@ void eliminarPerson(Persona **listaPersonas, char nombrearch[],int posicionArray
     printf("Cambios realizados con exito");
 }
 
-
 /// FUNCIONES DE ARCHIVOS PARA GESTION PERSONAS---------------------------------------------------------------------------------///
 /// FUNCIONES DE ARCHIVOS PARA GESTION PERSONAS---------------------------------------------------------------------------------///
 /// FUNCIONES DE ARCHIVOS PARA GESTION PERSONAS---------------------------------------------------------------------------------///
-
 
 
 /// FUNCIONES DE ARCHIVOS PARA GESTION VEHICULOS---------------------------------------------------------------------------------///
@@ -135,14 +133,12 @@ void leerArchiVehiculos()
 {
     FILE *archiV = fopen(ARCHI_VEHICULOS, "rb");
     int cont = 0;
+    char opcion;
     Vehiculo aux;
+    cantVehiculos=0;
     arrDinVehiculos = (Vehiculo*)malloc(5 * sizeof(Vehiculo));
 
     int numAux=0;
-    if (archiV==NULL){
-        printf("el archivo no pudo ser abierto");
-    }
-
     if (archiV!= NULL)
     {
         while(fread((&aux), sizeof(Vehiculo), 1, archiV))
@@ -160,7 +156,6 @@ void leerArchiVehiculos()
 
         fseek(archiV, 0, SEEK_SET);
 
-
         while(fread(&aux, sizeof(Vehiculo), 1, archiV) && cont<(cantVehiculos+1))
         {
             if(aux.activo == 1)
@@ -172,8 +167,14 @@ void leerArchiVehiculos()
         fclose(archiV);
     }
     else{
-        printf("no pudo abrirse el archivo");
-        return 0;
+        MUTEXLOCK;
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,medidasConsola.alto/2);
+        printf("el archivo no pudo ser abierto, desea crearlo y agregar datos?");
+        scanf("%d", opcion);
+        if(opcion == 's'){
+            agregarVehiculo();
+        }
+        MUTEXUNLOCK;
     }
 }
 
@@ -181,7 +182,7 @@ void leerArchiVehiculos()
 void agregarVehiculo()
 {
     FILE *archiV;
-    archiV = fopen(ARCHI_VEHICULOS, "r+b");
+    archiV = fopen(ARCHI_VEHICULOS, "ab");
 
     char op;
     Vehiculo nuevoVehiculo;
@@ -204,7 +205,10 @@ void agregarVehiculo()
         do
         {
             //Agregar el nuevo vehiculo al final del arreglo dinamico
+            MUTEXLOCK;
+            gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+1);
             nuevoVehiculo = ingresoVehiculo();
+            MUTEXUNLOCK;
 
             cantVehiculos++;
 
@@ -217,10 +221,13 @@ void agregarVehiculo()
             //Mover el puntero del archivo al final y escribir el nuevo vehiculo
             fseek(archiV, 0, SEEK_END);
             fwrite(&nuevoVehiculo, sizeof(Vehiculo), 1, archiV);
-
-            printf("\nIngrese ESC si no desea cargar otro vehiculo.\n");
+            MUTEXLOCK;
+            gotoxy(medidasConsola.ancho/2-4,medidasConsola.alto/2+4);
+            printf("Ingrese ESC si no desea cargar otro vehiculo.");
+            gotoxy(medidasConsola.ancho/2-4,medidasConsola.alto/2+5);
             FF;
             op = getch();
+            MUTEXUNLOCK;
         }
         while(op != ESC);
 

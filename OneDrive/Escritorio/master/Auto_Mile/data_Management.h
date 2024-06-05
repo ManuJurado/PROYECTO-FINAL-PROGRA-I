@@ -74,6 +74,7 @@ int entraUsuario(int dni[],char contrasenia[]);/// retorna 2 si usuario y ctseni
 void modificarUsuario();
 void copiaPersonaEnAux(Persona *auxPersona, int pos);
 void copiaPersonaModificado(Persona auxPersona, int pos);
+int verificarAdminOCliente(int dni);
 
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------///
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------///

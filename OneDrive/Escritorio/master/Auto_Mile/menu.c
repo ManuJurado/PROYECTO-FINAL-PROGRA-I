@@ -1099,141 +1099,64 @@ void intro()
 ///FUNCIONES DE MENU E INTERFAZ--------------------------------------------------------------------------------------------------------------------///
 ///FUNCIONES DE MENU E INTERFAZ--------------------------------------------------------------------------------------------------------------------///
 
-int mainMenu(int anchoConsola, int altoConsola)
+/// Funciones auxiliares para los menues///
+
+void leerLimite(char *digitos, int max)///
 {
-    char contra[MAX_CARACTERES], opcion, op;
-    int flag, dni;
-    do
+    int contador = 0;
+
+    while (1)
     {
-        leerArchPersonas();
-        menuInicio(anchoConsola,altoConsola);
-        flag = inicio(anchoConsola, altoConsola);
+        char tecla = getch();
 
-        if (flag == 1)
+        if (tecla == '\r')
         {
-            do
-            {
-                menuCrearUsuario(anchoConsola, altoConsola, &dni, contra);
-
-                MUTEXLOCK;
-                gotoxy(anchoConsola/2-33,altoConsola/2-10);
-                printf("ESCAPE para volver hacia atr%cs / C para continuar...",160);
-
-                opcion = getch();
-                MUTEXUNLOCK;
-                flag = (opcion == 27) ? 0 : 1;
-            }
-            while (flag == 1);
+            digitos[contador] = '\0';
+            break;
         }
-        else if (flag == 2)
+
+        else if (tecla == '\b' && contador > 0)
         {
-            flag = ingresaUsuario(anchoConsola,altoConsola);
+            printf("\b \b");
+            contador--;
+        }
 
-            if (flag == 1)
-            {
-                cuadroMenuInstantaneo(anchoConsola,altoConsola);
-                MUTEXLOCK;
-                gotoxy(anchoConsola/2-33,altoConsola/2-9);
-                printf("Has superado la cantidad m%cxima de intentos.",160);
-                gotoxy(anchoConsola/2-33,altoConsola/2-7);
-                printf("Presione cualquier tecla para salir al men%c principal...",163);
-                MUTEXUNLOCK;
-
-                opcion = getch();
-            }
-            else  //flag = 2  ->  Ingresa sesión.
-            {
-                if (tipoUsuario(dni)){
-                    menuOpcionesDeAdmin(anchoConsola,altoConsola,dni);
-                }
-                else{
-                    menuOpcionesDeUsuario(anchoConsola,altoConsola,dni);
-                }
-
-                MUTEXLOCK;
-                gotoxy(anchoConsola/2-33,altoConsola/2-8);
-                printf("Presione cualquier tecla para salir al men%c principal...",163);
-                MUTEXUNLOCK;
-
-                opcion = getch();
-                flag = (opcion == 27) ? 0 : 1;
-            }
+        else if (contador < max && tecla != '\b')
+        {
+            putchar(tecla);
+            digitos[contador] = tecla;
+            contador++;
         }
     }
-    while (flag>=0);
-
-    do
-    {
-        MUTEXLOCK;
-        gotoxy((medidasConsola.ancho/2-10),(medidasConsola.alto * 0,75));
-        printf("\nIngrese ESC para finalizar...\n");
-        op = getch();
-        MUTEXUNLOCK;
-    }
-    while (op != ESC);
-
-    return 1;
 }
 
-int inicio(int x, int y)
+void leerLimiteNumeros(char *digitos, int max)
 {
-    int flag = 0;
-    char opcion;
+    int contador = 0;
 
-    do
+    while (1)
     {
-        opcion = getch();
+        char tecla = getch();
 
-        if(opcion !=0)
+        if (tecla == '\r')
         {
-            if (opcion == -32)
-            {
-                opcion = getch();
-                switch (opcion)
-                {
-                case (75):      //Crear Usuario. izquierda
-                    MUTEXLOCK;
-                    selectCrearUsuario(x,y);
-                    MUTEXUNLOCK;
-                    flag = 1;
-                    last_key=75;
-                    Sleep(800);
-                    break;
-
-                case (77):      //Inicio de sesión. derecha
-                    MUTEXLOCK;
-                    selectIniciarSesion(x,y);
-                    MUTEXUNLOCK;
-                    flag = 2;
-                    last_key=77;
-                    Sleep(800);
-                    break;
-                }
-            }
-            else if (opcion == 13 && flag)     // Seleccionar opcion
-            {
-                return flag;
-            }
-            else if (opcion == 27)     // Seleccionar opcion
-            {
-                return -1;
-            }
+            digitos[contador] = '\0';
+            break;
         }
-        Sleep(10);
-    }
-    while (1);
-}
 
-void menuInicio(int x, int y)
-{
-    CLEAN;
-    cursorClean(0);
-    Sleep(100);
-    cuadroMenuInstantaneo(x,y);
-    MUTEXLOCK;
-    tituloMenu(x,y);
-    detallesMenu(x,y);
-    MUTEXUNLOCK;
+        else if (tecla == '\b' && contador > 0)
+        {
+            printf("\b \b");
+            contador--;
+        }
+
+        else if (tecla >= '0' && tecla <= '9' && contador < max)
+        {
+            putchar(tecla);
+            digitos[contador] = tecla;
+            contador++;
+        }
+    }
 }
 
 void cursorClean(int ver)/// cambia la visualizacion del cursor. Se pasa como parametro 1 para mostrar o 0 para esconder.
@@ -1352,6 +1275,22 @@ void tituloMenu(int x, int y)/// dibuja el titulo en el centro de la consola
     printf("%c   %c%c%c%c%c%c%c%c%c%c     %c  %c  %c%c%c%c%c%c%c", 179, 179, 192, 196, 196, 217, 179, 192, 196,196, 217,179,179,179,193,192,196, 192,196,196);
 }
 
+void detallesMenu(int x, int y)/// printea los cuadros de seleccion crear usuario e iniciar sesion cuando empieza el menu principal
+{
+    int centrox = x/2 - 21;
+    int centroy = y/2 + 7;
+
+    gotoxy(centrox,centroy);
+    printf("Crear usuario");
+    gotoxy(centrox,centroy+1);
+    printf("     (%c)     ",174);
+
+    gotoxy(centrox+30,centroy);
+    printf("Iniciar sesi%cn", 162);
+    gotoxy(centrox+30,centroy+1);
+    printf("     (%c)      ", 175);
+}
+
 void selectCrearUsuario(int x,int y)/// pinta la opcion de crear usuario en el menu principal
 {
     int centrox = x/2 - 21;
@@ -1382,80 +1321,6 @@ void selectIniciarSesion(int x, int y)/// pinta la opcion de crear iniciar sesio
     printf("\e[7mIniciar sesi%cn", 162);
     gotoxy(centrox+30,centroy+1);
     printf("     (%c)      \e[0m", 175);
-}
-
-void detallesMenu(int x, int y)/// printea los cuadros de seleccion crear usuario e iniciar sesion cuando empieza el menu principal
-{
-    int centrox = x/2 - 21;
-    int centroy = y/2 + 7;
-
-    gotoxy(centrox,centroy);
-    printf("Crear usuario");
-    gotoxy(centrox,centroy+1);
-    printf("     (%c)     ",174);
-
-    gotoxy(centrox+30,centroy);
-    printf("Iniciar sesi%cn", 162);
-    gotoxy(centrox+30,centroy+1);
-    printf("     (%c)      ", 175);
-}
-
-void leerLimite(char *digitos, int max)///
-{
-    int contador = 0;
-
-    while (1)
-    {
-        char tecla = getch();
-
-        if (tecla == '\r')
-        {
-            digitos[contador] = '\0';
-            break;
-        }
-
-        else if (tecla == '\b' && contador > 0)
-        {
-            printf("\b \b");
-            contador--;
-        }
-
-        else if (contador < max && tecla != '\b')
-        {
-            putchar(tecla);
-            digitos[contador] = tecla;
-            contador++;
-        }
-    }
-}
-
-void leerLimiteNumeros(char *digitos, int max)
-{
-    int contador = 0;
-
-    while (1)
-    {
-        char tecla = getch();
-
-        if (tecla == '\r')
-        {
-            digitos[contador] = '\0';
-            break;
-        }
-
-        else if (tecla == '\b' && contador > 0)
-        {
-            printf("\b \b");
-            contador--;
-        }
-
-        else if (tecla >= '0' && tecla <= '9' && contador < max)
-        {
-            putchar(tecla);
-            digitos[contador] = tecla;
-            contador++;
-        }
-    }
 }
 
 void cuadroEscritura(int x,int y)/// dibuja un cuadro donde nos ubicaremos para escribir. Se le pasa por parametro una constante MAX_CARACTERES para delimitar el alcance del cuadro.
@@ -1515,6 +1380,152 @@ void escribeCuadro(int x, int y, void (*funcion)(), char texto[], int cant)
     while (!strcmp(texto,""));
     gotoxy(x-3,y+2);
     printf("                                    ");
+    MUTEXUNLOCK;
+}
+
+///-----------------------------------------------------------------------------------------------------------------------------fin funciones auxiliares para menues///
+
+int mainMenu(int anchoConsola, int altoConsola)
+{
+    char contra[MAX_CARACTERES], opcion, op;
+    int flag, dni;
+    do
+    {
+        leerArchPersonas();
+        menuInicio(anchoConsola,altoConsola);
+        flag = inicio(anchoConsola, altoConsola);
+
+        if (flag == 1)
+        {
+            do
+            {
+                menuCrearUsuario(anchoConsola, altoConsola, &dni, contra);
+
+                MUTEXLOCK;
+                gotoxy(anchoConsola/2-33,altoConsola/2-10);
+                printf("ESCAPE para volver hacia atr%cs / C para continuar...",160);
+
+                opcion = getch();
+                MUTEXUNLOCK;
+                flag = (opcion == 27) ? 0 : 1;
+            }
+            while (flag == 1);
+        }
+        else if (flag == 2)
+        {
+            flag = ingresaUsuario(anchoConsola,altoConsola,&dni);
+
+            if (flag == 1)
+            {
+                cuadroMenuInstantaneo(anchoConsola,altoConsola);
+                MUTEXLOCK;
+                gotoxy(anchoConsola/2-33,altoConsola/2-9);
+                printf("Has superado la cantidad m%cxima de intentos.",160);
+                gotoxy(anchoConsola/2-33,altoConsola/2-7);
+                printf("Presione cualquier tecla para salir al men%c principal...",163);
+                MUTEXUNLOCK;
+
+                opcion = getch();
+            }
+            else  //flag = 2  ->  Ingresa sesión.
+            {
+                if (tipoUsuario(dni)){
+                    cuadroMenuInstantaneo(anchoConsola,altoConsola);
+                    MUTEXLOCK;
+                    gotoxy((medidasConsola.ancho/2),(medidasConsola.alto/2));
+                    printf("Ingresando al menu Administrador...");
+                    Sleep(2000);
+                    MUTEXUNLOCK;
+                    cuadroMenuInstantaneo(anchoConsola,altoConsola);
+                    menuOpcionesDeAdmin(anchoConsola,altoConsola);
+                }
+                else{
+                    menuOpcionesDeUsuario(anchoConsola,altoConsola,dni);
+                }
+
+                MUTEXLOCK;
+                gotoxy(anchoConsola/2-33,altoConsola/2-8);
+                printf("Presione cualquier tecla para salir al men%c principal...",163);
+                MUTEXUNLOCK;
+
+                opcion = getch();
+                flag = (opcion == 27) ? 0 : 1;
+            }
+        }
+    }
+    while (flag>=0);
+
+    do
+    {
+        MUTEXLOCK;
+        gotoxy((medidasConsola.ancho/2-10),(medidasConsola.alto * 0,75));
+        printf("\nIngrese ESC para finalizar...\n");
+        op = getch();
+        MUTEXUNLOCK;
+    }
+    while (op != ESC);
+
+    return 1;
+}
+
+int inicio(int x, int y)
+{
+    int flag = 0;
+    char opcion;
+
+    do
+    {
+        opcion = getch();
+
+        if(opcion !=0)
+        {
+            if (opcion == -32)
+            {
+                opcion = getch();
+                switch (opcion)
+                {
+                case (75):      //Crear Usuario. izquierda
+                    MUTEXLOCK;
+                    selectCrearUsuario(x,y);
+                    MUTEXUNLOCK;
+                    flag = 1;
+                    last_key=75;
+                    Sleep(800);
+                    break;
+
+                case (77):      //Inicio de sesión. derecha
+                    MUTEXLOCK;
+                    selectIniciarSesion(x,y);
+                    MUTEXUNLOCK;
+                    flag = 2;
+                    last_key=77;
+                    Sleep(800);
+                    break;
+                }
+            }
+            else if (opcion == 13 && flag)     // Seleccionar opcion
+            {
+                return flag;
+            }
+            else if (opcion == 27)     // Seleccionar opcion
+            {
+                return -1;
+            }
+        }
+        Sleep(10);
+    }
+    while (1);
+}
+
+void menuInicio(int x, int y)
+{
+    CLEAN;
+    cursorClean(0);
+    Sleep(100);
+    cuadroMenuInstantaneo(x,y);
+    MUTEXLOCK;
+    tituloMenu(x,y);
+    detallesMenu(x,y);
     MUTEXUNLOCK;
 }
 
@@ -1600,12 +1611,12 @@ void guardarDatosUsuario(int x, int y, char dniusu[], char contrasenia[])/// ver
     MUTEXUNLOCK;
 }
 
-int ingresaUsuario(int x, int y) /// ver
+int ingresaUsuario(int x, int y, int *dni) /// ver
 {
     int centrox = x/2 - 25;
     int centroy = y/2 + 2;
     char contra[MAX_CARACTERES];
-    int intentos = 0, ingreso, dni;
+    int intentos = 0, ingreso;
 
     cuadroMenuInstantaneo(x,y);
 
@@ -1615,10 +1626,10 @@ int ingresaUsuario(int x, int y) /// ver
         textoCuadro(centrox+22,centroy-1,"Contrasena:");
 
         escribeCuadro(centrox+23,centroy-4,leerLimiteNumeros,contra,8);
-        dni = strtol(contra, NULL, 10);
+        (*dni) = strtol(contra, NULL, 10);
         escribeCuadro(centrox+23,centroy,leerLimite,contra,20);
 
-        ingreso = entraUsuario(dni,contra);
+        ingreso = entraUsuario((*dni),contra);
         switch (ingreso)
         {
         case (0):
@@ -1639,18 +1650,21 @@ int ingresaUsuario(int x, int y) /// ver
         default:
             MUTEXLOCK;
             gotoxy(centrox-8,centroy+6);
-            printf("Ingresando a su perfil...", 164);
-            Sleep(2000);
             MUTEXUNLOCK;
             break;
         }
     }
     while(intentos < 3 && ingreso != 2);
 
+    if(intentos == 3){
+        gotoxy(centrox-8,centroy+6);
+        printf("maxima cantidad de intentos alcanzada. Volviendo al menu principal...");
+        return mainMenu(x,y);
+    }
+    else{
     return ingreso;
+    }
 }
-
-
 
 ///menu para modificar un vehiculo por dato
 void modificarVehiculo()
@@ -1743,14 +1757,59 @@ void modificarVehiculo()
     }
 }
 
-
-
-void menuOpcionesDeAdmin(int x,int y, int dni)
+void menuOpcionesDeAdmin(int x,int y)
 {
+    char op;
+
+    int inicioCuadroX = (medidasConsola.ancho/2) - (ANCHO/2);
+    int inicioCuadroY = (medidasConsola.alto/2) - (ALTO/2);
+
+    MUTEXLOCK;
+    gotoxy(inicioCuadroX+1,inicioCuadroY+1);
+    MUTEXUNLOCK;
+
+    do
+    {
+        cuadroMenuInstantaneo(x,y);
+        MUTEXLOCK;
+        gotoxy(inicioCuadroX+1,inicioCuadroY+2);
+        printf("Ingrese el menu al cual quiere ingresar:");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+4);
+        printf("1-  Gestion de personas.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+6);
+        printf("2-  Gestion de vehiculos.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+8);
+        printf("3-  Gestion de alquileres.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+10);
+        MUTEXUNLOCK;
+        fflush(stdin);
+        op = getch();
+
+        switch(op)
+        {
+            case '1':
+
+            break;
+            case '2':
+                cuadroMenuInstantaneo(x,y);
+                menuGestionVehiAdmin(x,y);
+            break;
+            case '3':
+//                modificarVehiculo();
+            break;
+            default:
+
+                break;
+        }
+    }while (op != ESC);
+
     //menuGestionVehiAdmin
     //menuGestionPersAdmin
     //menuGestionAlqAdmin
 }
+
+
+
 
 void menuOpcionesDeUsuario(int x,int y, int dni)
 {
@@ -1762,6 +1821,59 @@ void menuOpcionesDeUsuario(int x,int y, int dni)
 
 void menuGestionVehiAdmin(int x, int y)
 {
+    int ABM = 0;
+    char op;
+    leerArchiVehiculos();
+    int inicioCuadroX = (medidasConsola.ancho/2) - (ANCHO/2);
+    int inicioCuadroY = (medidasConsola.alto/2) - (ALTO/2);
+
+    MUTEXLOCK;
+    gotoxy(inicioCuadroX+1,inicioCuadroY+1);
+    printf("Cantidad de vehiculos: %i", cantVehiculos);
+    MUTEXUNLOCK;
+
+    do
+    {
+        cuadroMenuInstantaneo(x,y);
+        MUTEXLOCK;
+        gotoxy(inicioCuadroX+1,inicioCuadroY-3);
+        printf("Ingrese el ABM del archivo:");
+        gotoxy(inicioCuadroX+1,inicioCuadroY-1);
+        printf("1-  Agregar un nuevo vehiculo.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+1);
+        printf("2-  Mostrar los vehiculos disponibles.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+3);
+        printf("3-  Modificar un vehiculo.");
+        gotoxy(inicioCuadroX+1,inicioCuadroY+5);
+        MUTEXUNLOCK;
+        fflush(stdin);
+        op = getch();
+
+        switch(op)
+        {
+            case '1':
+                cuadroMenuInstantaneo(x,y);
+                agregarVehiculo();
+            break;
+            case '2':
+                cuadroMenuInstantaneo(x,y);
+                leerRegistroVehiculos();
+            break;
+            case '3':
+                modificarVehiculo();
+            break;
+            case '4':
+                //eliminarVehiculo();
+            break;
+            case '5':
+
+            break;
+            default:
+                break;
+        }
+    }while (op != ESC);
+
+    free(arrDinVehiculos);
     //Ver Vehículos.
     //Agregar Vehículo.
     //Modificar Vehículos.
@@ -1799,10 +1911,6 @@ void menuGestionCliente(int x, int y)
 ///FUNCIONES DE MENU E INTERFAZ--------------------------------------------------------------------------------------------------------------------///
 ///FUNCIONES DE MENU E INTERFAZ--------------------------------------------------------------------------------------------------------------------///
 ///FUNCIONES DE MENU E INTERFAZ--------------------------------------------------------------------------------------------------------------------///
-
-
-
-
 
 
 

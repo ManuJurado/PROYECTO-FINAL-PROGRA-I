@@ -10,6 +10,7 @@ int cantidadPersonas = 0;
 
 Alquiler *arrDinAlquileres = NULL;
 int cantAlquileres = 0;
+
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS---------------------------------------------------------------------------------///
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS---------------------------------------------------------------------------------///
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS---------------------------------------------------------------------------------///
@@ -30,7 +31,7 @@ int buscarUsuarioArray(int dni, int *pos)
             return 1;
         }
     }
-return 0;
+    return 0;
 }
 
 int tipoUsuario(int dni)
@@ -39,10 +40,10 @@ int tipoUsuario(int dni)
     {
         if(listaPersonas[i].dni==dni)
         {
-            return (strcmp(listaPersonas[i].rol,"Cliente")) ? 1 : 0;
+            return (strcmpi(listaPersonas[i].rol,"Cliente")) ? 1 : 0;
         }
     }
-return -1;
+    return -1;
 }
 
 int entraUsuario(int dni[],char contrasenia[])/// retorna 2 si usuario y ctsenia son correctos, 1 si solo usuario correcto, 0 si no existe.
@@ -126,7 +127,8 @@ void modificarUsuario()
 
             printf("\nIngrese ESC para finalizar la modificacion...\n");
             salida = getch();
-        }while(salida != ESC);
+        }
+        while(salida != ESC);
 
         printf("Guardar cambios s/n");
 
@@ -157,6 +159,24 @@ void copiaPersonaModificado(Persona auxPersona, int pos)
     strcpy(listaPersonas[pos].contra, auxPersona.contra);
 }
 
+int verificarAdminOCliente(int dni)
+{
+    for(int i = 0; i<cantidadPersonas ; i++)
+    {
+        if(listaPersonas[i].dni == dni)
+        {
+            if(strcmpi(listaPersonas[i].rol,"Admin")==0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+    }
+    return 0;
+}
 
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------///
 ///FUNCIONES PARA GESTION DINAMICA DE USUARIOS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------///
@@ -213,28 +233,35 @@ void cargaPatente(Patente *pat)
     char auxLetras[4]; // Tamaño 4 para incluir el carácter nulo
     char auxNumeros[4]; // Tamaño 4 para incluir el carácter nulo
 
-    do {
-        printf("\nIngrese las letras de la patente (3 letras): ");
+    do
+    {
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+1);
+        printf("Ingrese las letras de la patente (3 letras): ");
         fflush(stdin);
         fgets(auxLetras, sizeof(auxLetras), stdin);
         // Eliminar el carácter de nueva línea si está presente
-        if (auxLetras[strlen(auxLetras) - 1] == '\n') {
+        if (auxLetras[strlen(auxLetras) - 1] == '\n')
+        {
             auxLetras[strlen(auxLetras) - 1] = '\0';
         }
-        if (strlen(auxLetras) != 3 || !sonLetras(auxLetras)) {
-            printf("Error: Ingrese exactamente 3 letras alfabéticas.\n");
+        if (strlen(auxLetras) != 3 || !sonLetras(auxLetras))
+        {
+            printf("Error: Ingrese exactamente 3 letras alfabéticas.             ");
             continue;
         }
 
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+2);
         printf("Ingrese los números de la patente (3 números): ");
         fflush(stdin);
         fgets(auxNumeros, sizeof(auxNumeros), stdin);
         // Eliminar el carácter de nueva línea si está presente
-        if (auxNumeros[strlen(auxNumeros) - 1] == '\n') {
+        if (auxNumeros[strlen(auxNumeros) - 1] == '\n')
+        {
             auxNumeros[strlen(auxNumeros) - 1] = '\0';
         }
-        if (strlen(auxNumeros) != 3 || !sonNumeros(auxNumeros)) {
-            printf("Error: Ingrese exactamente 3 números.\n");
+        if (strlen(auxNumeros) != 3 || !sonNumeros(auxNumeros))
+        {
+            printf("Error: Ingrese exactamente 3 números.               ");
             continue;
         }
 
@@ -245,13 +272,15 @@ void cargaPatente(Patente *pat)
         pat->numeros[sizeof(pat->numeros) - 1] = '\0'; // Asegurar que la cadena esté terminada con '\0'
 
         break; // Salir del bucle si la patente es válida
-    } while (1);
+    }
+    while (1);
 }
 
 //Ingreso de Marca
 void cargaMarca(char *marca)
 {
-    printf("\nIngrese la MARCA del vehiculo:\n> ");
+    gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+4);
+    printf("Ingrese la MARCA del vehiculo:> ");
     FF;
     gets(marca);
 }
@@ -259,7 +288,8 @@ void cargaMarca(char *marca)
 //Ingreso de Modelo
 void cargaModelo(char *modelo)
 {
-    printf("\nIngrese el MODELO del vehiculo:\n> ");
+    gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+6);
+    printf("Ingrese el MODELO del vehiculo: ");
     FF;
     gets(modelo);
 }
@@ -274,7 +304,8 @@ void cargaAnio(int *anio)
 
     do
     {
-        printf("\nIngrese el ANIO de fabricacion del vehiculo (entre %d y %d):\n> ", min, max);
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+8);
+        printf("Ingrese el ANIO de fabricacion del vehiculo (entre %d y %d): ", min, max);
         scanf("%s", auxAnioString);
 
         if (sonNumeros(auxAnioString))
@@ -287,12 +318,14 @@ void cargaAnio(int *anio)
             }
             else
             {
-                printf("\nEl anio ingresado no esta dentro del rango permitido. Intente nuevamente.\n");
+                gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+8);
+                printf("El anio ingresado no esta dentro del rango permitido. Intente nuevamente.");
             }
         }
         else
         {
-            printf("\nEntrada invalida. Por favor, ingrese un numero entero.\n");
+            gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+8);
+            printf("Entrada invalida. Por favor, ingrese un numero entero.");
         }
     }
     while (1);    // Bucle infinito hasta que se ingrese un dato válido
@@ -307,7 +340,8 @@ void cargaKms(int *kms)
 
     do
     {
-        printf("\nIngrese el KILOMETRAJE del vehiculo (entre %d y %d):\n> ", min, max);
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+10);
+        printf("Ingrese el KILOMETRAJE del vehiculo (entre %d y %d): ", min, max);
         scanf("%s", auxKmsString);
 
         longKms = strlen(auxKmsString);
@@ -323,12 +357,13 @@ void cargaKms(int *kms)
             }
             else
             {
-                printf("\nEl kilometraje ingresado no es correcto. Intente nuevamente.\n");
+                gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+10);
+                printf("El kilometraje ingresado no es correcto. Intente nuevamente.");
             }
         }
         else
         {
-            printf("\nEntrada invalida. Por favor, ingrese un numero entero.\n");
+            printf("Entrada invalida. Por favor, ingrese un numero entero.");
         }
     }
     while (1);    // Bucle infinito hasta que se ingrese un dato válido
@@ -343,7 +378,8 @@ void cargaPrecioDiario(float *precioDeAlquilerDiario)
 
     do
     {
-        printf("\nIngrese el PRECIO DE ALQUILER DIARIO del vehiculo (entre $%.2f y $%.2f ARS):\n> ", min, max);
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+12);
+        printf("Ingrese el PRECIO DE ALQUILER DIARIO (hasta $%.2f ARS): ", max);
         scanf("%f", &auxPrecio);
 
         if (auxPrecio >= min && auxPrecio <= max)
@@ -353,7 +389,8 @@ void cargaPrecioDiario(float *precioDeAlquilerDiario)
         else
         {
             //CLEAN;
-            printf("\nEl precio ingresado no es correcto. Intente nuevamente.\n");
+            gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+12);
+            printf("El precio ingresado no es correcto. Intente nuevamente.");
         }
     }
     while (auxPrecio < min || auxPrecio > max);
@@ -369,7 +406,8 @@ void cargaTipo(char *tipoVehiculo)
 
     do
     {
-        printf("\nIngrese el TIPO de vehiculo (1-Auto / 2-Camioneta / 3-Utilitario):\n> ");
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+14);
+        printf("Ingrese el TIPO de vehiculo (1-Auto / 2-Camioneta / 3-Utilitario): ");
         scanf("%i", &tipo);
 
         if (tipo >= 1 && tipo <= 3)
@@ -390,7 +428,9 @@ void cargaTipo(char *tipoVehiculo)
         else
         {
             //CLEAN;
-            printf("\nEl tipo ingresado no es correcto. Intente nuevamente.\n");
+            gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+13);
+            printf("El tipo ingresado no es correcto. Intente nuevamente.");
+            gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)+14);
         }
     }
     while (tipo < 1 || tipo > 3);
@@ -430,44 +470,171 @@ Vehiculo ingresoVehiculo()
 //Funciones para printear los datos
 void mostrarVehiculo(Vehiculo vehi)
 {
-    printf("\nPatente: %s - %s", vehi.patente.letras, vehi.patente.numeros);
-    printf("\nMarca: %s", vehi.marca);
-    printf("\nModelo: %s", vehi.modelo);
-    printf("\nAnio: %i", vehi.anio);
-    printf("\nKilometraje: %ikms", vehi.kms);
-    printf("\nPrecio de alquiler por dia: $%.2f", vehi.precioDeAlquilerDiario);
-    printf("\nTipo de Vehiculo: %s", vehi.tipoVehiculo);
+    MUTEXLOCK;
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)-2));
+    printf("Patente: %s - %s", vehi.patente.letras, vehi.patente.numeros);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)-1));
+    printf("Marca: %s", vehi.marca);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)));
+    printf("Modelo: %s", vehi.modelo);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+1));
+    printf("Anio: %i", vehi.anio);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+2));
+    printf("Kilometraje: %ikms", vehi.kms);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+3));
+    printf("Precio por dia: $%.2f", vehi.precioDeAlquilerDiario);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+4));
+    printf("Tipo de Vehiculo: %s", vehi.tipoVehiculo);
     if(vehi.disponibilidad == 1)
     {
-        printf("\nVehiculo Disponible.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+5));
+        printf("Vehiculo Disponible.");
     }
     else
     {
-        printf("\nVehiculo NO Disponible.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+5));
+        printf("Vehiculo NO Disponible.");
     }
+    if(strcmpi(vehi.tipoVehiculo,"Camioneta")==0)
+    {
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)-2));
+        printf("                           .------.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)-1));
+        printf("                          :|||\"\"\"`.`.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)));
+        printf("                          :|||     7.`.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+1));
+        printf("       .===+===+===+===+===||`----L7'-`7`---.._");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+2));
+        printf("       []                  || ==       |       \"\"\"-.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+3));
+        printf("       []...._____.........||........../ _____ ____|");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+4));
+        printf("      c\\____/,---.\\_       ||_________/ /,---.\\_  _/");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+5));
+        printf("        /_,-/ ,-. \\ `._____|__________||/ ,-. \\ \\_[");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+6));
+        printf("           /\\ `-' /                    /\\ `-' /");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+28,((medidasConsola.alto/2)-(ALTO/2)+7));
+        printf("                 `---'                       `---' ");
+    }
+    else if(strcmpi(vehi.tipoVehiculo,"Auto")==0)
+    {
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)));
+        printf("                        _..-------++._");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+1));
+        printf("                    _.-'/ |      _||  \"--._");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2))+2);
+        printf("              __.--'`._/_\\j_____/_||___\\    `----.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+3));
+        printf("         _.--'_____    |          \\     _____    /");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+4));
+        printf("       _j    /,---.\\   |        =o |   /,---.\\   |_");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+5));
+        printf("      [__]==// .-. \\\\==`===========/==// .-. \\\\=[__]");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+6));
+        printf("        `-._|\\ `-' /|___\\_________/___|\\ `-' /|_.'     ");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+24,((medidasConsola.alto/2)-(ALTO/2)+7));
+        printf("                   `---'                     `---'\n");
+    }
+    else if(strcmpi(vehi.tipoVehiculo,"Utilitario")==0)
+    {
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2))-1);
+        printf("    ---------------------------.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)));
+        printf("   `/\"\"\"\"/\"\"\"\"/|\"\"|'|\"\"||\"\"|   ' \\");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2))+1);
+        printf("   /    /    / |__| |__||__|      |");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2))+2);
+        printf("  /----------=====================|");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)+3));
+        printf("  | \\  /V\\  /    _.               |");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)+4));
+        printf("  |()\\ \\W/ /()   _            _   |");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)+5));
+        printf("  |   \\   /     / \\          / \\  |-( )");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)+6));
+        printf("  =C========C==_| ) |--------| ) _/==] ");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1)+35,((medidasConsola.alto/2)-(ALTO/2)+7));
+        printf("   \\_\\_/__..  \\_\\_/_ \\_\\_/ \\_\\_/__.__.");
 
-    //BORRAR DESPUES
-    if(vehi.activo == 1)
-    {
-        printf("\nVehiculo Activo.");
     }
-    else
-    {
-        printf("\nEl Vehiculo ha sido ELIMINADO.");
-    }
-    printf("\n\n");
+    MUTEXUNLOCK;
+//
+//    //BORRAR DESPUES
+//    if(vehi.activo == 1)
+//    {
+//        printf("\nVehiculo Activo.");
+//    }
+//    else
+//    {
+//        printf("\nEl Vehiculo ha sido ELIMINADO.");
+//    }
+//    printf("\n\n");
 }
 
 //lee y muestra todos los registros de vehiculos dentro de un arreglo dinamico cargado
 void leerRegistroVehiculos()
 {
-    printf("\nVehiculos disponibles: \n");
-    for(int i = 0; i<cantVehiculos; i++)
+    char opcion;
+    int i=0;
+    mostrarVehiculo(arrDinVehiculos[i]);
+    MUTEXLOCK;
+    gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)-5);
+    printf("Vehiculo %d de %d", i+1, cantVehiculos);
+    MUTEXUNLOCK;
+    do
     {
-        printf("---------------");
-        mostrarVehiculo(arrDinVehiculos[i]);
-        printf("---------------");
-    }
+
+        fflush(stdin);
+        opcion = getch();
+
+        if(opcion !=0)
+        {
+            if (opcion == -32)
+            {
+                opcion = getch();
+                switch (opcion)
+                {
+                case (75):      //moverse izquierda
+                    i--;
+                    if(i<0)
+                    {
+                        i=cantVehiculos-1;
+                    }
+                    cuadroMenuInstantaneo(medidasConsola.ancho,medidasConsola.alto-15);
+                    mostrarVehiculo(arrDinVehiculos[i]);
+                    MUTEXLOCK;
+                    gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)-5);
+                    printf("Vehiculo %d de %d", i+1, cantVehiculos);
+                    MUTEXUNLOCK;
+                    last_key=75;
+                    Sleep(750);
+                    break;
+                case (77):      //moverse derecha
+                    i++;
+                    if(i>cantVehiculos-1)
+                    {
+                        i=0;
+                    }
+                    cuadroMenuInstantaneo(medidasConsola.ancho,medidasConsola.alto-15);
+                    mostrarVehiculo(arrDinVehiculos[i]);
+                    MUTEXLOCK;
+                    gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2-ALTO/2)-5);
+                    printf("Vehiculo %d de %d", i+1, cantVehiculos);
+                    MUTEXUNLOCK;
+                    last_key=77;
+                    Sleep(750);
+                    break;
+                }
+            }
+            else if (opcion == 27) //sale del if si se presiona ESC
+            {
+                break;
+            }
+        }
+    }while(opcion != ESC);
+
 }
 
 //Busca la patente de un vehiculo dentro del arreglo dinamigo. Si la encuentra devuelve 1, si no devuelve 0

@@ -151,13 +151,13 @@ void textoCuadro(int x, int y, char data[]);/// Se ubica en una posicion x,y , e
 void escribeCuadro(int x, int y, void (*funcion)(), char texto[], int cant);
 void menuCrearUsuario(int x, int y, int *dni, char contra[]);
 void guardarDatosUsuario(int x, int y, char dniusu[], char contrasenia[]);
-int ingresaUsuario(int x, int y);
+int ingresaUsuario(int x, int y, int *dni); /// ver
 
 ///menu para modificar un vehiculo por dato
 void modificarVehiculo();
 ///----------------------------------///
 
-void menuOpcionesDeAdmin(int x,int y, int dni);
+void menuOpcionesDeAdmin(int x,int y);
 void menuOpcionesDeUsuario(int x,int y, int dni);
 void menuGestionVehiAdmin(int x, int y);
 void menuGestionPersAdmin(int x, int y);
