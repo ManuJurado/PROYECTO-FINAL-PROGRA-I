@@ -31,6 +31,17 @@ void agregarVehiculo();///Funcion para agregar la estructura de vehiculo cargada
 void modificaVehiArch(Patente pat, int posArray);///funcion que recibe una patente y busca la posicion en la que se encuentra esa patente dentro del archivo. En base a eso se copia una posicion del arreglo dinamico en esa posicion del archivo.
 int buscarPatenteArch(Patente pat);///funcion para buscar una patente dentro de un archivo de registros vehiculos
 
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+
+
+
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+/// FUNCIONES DE ARCHIVOS PARA GESTION ALQUILERES---------------------------------------------------------------------------------///
+
+
 
 
 #endif // MANEJO_ARCHIVOS_H_INCLUDED

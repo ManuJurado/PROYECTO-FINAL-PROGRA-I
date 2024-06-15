@@ -227,6 +227,13 @@ int sonNumeros(char str[])
     return 1; // Verdadero
 }
 
+// Función para convertir una cadena a mayúsculas
+void convertirAMayusculas(char *cadena) {
+    for (int i = 0; cadena[i] != '\0'; i++) {
+        cadena[i] = toupper(cadena[i]);
+    }
+}
+
 //carga la patente en un de un vehiculo
 void cargaPatente(Patente *pat)
 {
@@ -264,6 +271,7 @@ void cargaPatente(Patente *pat)
             printf("Error: Ingrese exactamente 3 números.               ");
             continue;
         }
+        convertirAMayusculas(auxLetras);
 
         // Copiar los valores a la estructura Patente
         strncpy(pat->letras, auxLetras, sizeof(pat->letras) - 1); // Copiar solo los primeros 3 caracteres
@@ -283,6 +291,7 @@ void cargaMarca(char *marca)
     printf("Ingrese la MARCA del vehiculo:> ");
     FF;
     gets(marca);
+    convertirAMayusculas(marca);
 }
 
 //Ingreso de Modelo
@@ -292,6 +301,7 @@ void cargaModelo(char *modelo)
     printf("Ingrese el MODELO del vehiculo: ");
     FF;
     gets(modelo);
+    convertirAMayusculas(modelo);
 }
 
 //Ingreso de Anio
@@ -473,27 +483,27 @@ void mostrarVehiculo(Vehiculo vehi)
     MUTEXLOCK;
     gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)-2));
     printf("Patente: %s - %s", vehi.patente.letras, vehi.patente.numeros);
-    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)-1));
-    printf("Marca: %s", vehi.marca);
     gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)));
-    printf("Modelo: %s", vehi.modelo);
-    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+1));
-    printf("Anio: %i", vehi.anio);
+    printf("Marca: %s", vehi.marca);
     gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+2));
-    printf("Kilometraje: %ikms", vehi.kms);
-    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+3));
-    printf("Precio por dia: $%.2f", vehi.precioDeAlquilerDiario);
+    printf("Modelo: %s", vehi.modelo);
     gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+4));
+    printf("Anio: %i", vehi.anio);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+6));
+    printf("Kilometraje: %ikms", vehi.kms);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+8));
+    printf("Precio por dia: $%.2f", vehi.precioDeAlquilerDiario);
+    gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+10));
     printf("Tipo de Vehiculo: %s", vehi.tipoVehiculo);
     if(vehi.disponibilidad == 1)
     {
-        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+5));
-        printf("Vehiculo Disponible.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+10),((medidasConsola.alto/2)-(ALTO/2)+12));
+        printf("[Vehiculo Disponible]");
     }
     else
     {
-        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+5));
-        printf("Vehiculo NO Disponible.");
+        gotoxy(((medidasConsola.ancho/2)-(ANCHO/2)+1),((medidasConsola.alto/2)-(ALTO/2)+12));
+        printf("[Vehiculo NO Disponible]");
     }
     if(strcmpi(vehi.tipoVehiculo,"Camioneta")==0)
     {
@@ -574,7 +584,7 @@ void mostrarVehiculo(Vehiculo vehi)
 }
 
 //lee y muestra todos los registros de vehiculos dentro de un arreglo dinamico cargado
-void leerRegistroVehiculos()
+void leerRegistroVehiculos(int *posicion)
 {
     char opcion;
     int i=0;
@@ -628,13 +638,16 @@ void leerRegistroVehiculos()
                     break;
                 }
             }
-            else if (opcion == 27) //sale del if si se presiona ESC
+            else if (opcion == ESC || opcion == 13) //sale del if si se presiona ESC o ENTER
             {
                 break;
             }
         }
-    }while(opcion != ESC);
+    }while(opcion != ESC || opcion != 13); // ESC o ENTER
 
+    if(opcion == 13){
+            (*posicion)==i;
+    }
 }
 
 //Busca la patente de un vehiculo dentro del arreglo dinamigo. Si la encuentra devuelve 1, si no devuelve 0

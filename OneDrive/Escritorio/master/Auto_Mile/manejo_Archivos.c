@@ -169,7 +169,8 @@ void leerArchiVehiculos()
     else{
         MUTEXLOCK;
         gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,medidasConsola.alto/2);
-        printf("el archivo no pudo ser abierto, desea crearlo y agregar datos?");
+        printf("el archivo no pudo ser abierto, desea crearlo y agregar datos? (s/n)");
+        gotoxy((medidasConsola.ancho/2-ANCHO/2)+1,(medidasConsola.alto/2)+1);
         scanf("%d", opcion);
         if(opcion == 's'){
             agregarVehiculo();
