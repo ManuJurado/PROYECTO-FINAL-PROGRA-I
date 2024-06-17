@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1718600252 source:c:\users\guido\onedrive\escritorio\auto-mile v3\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+
+1718600235 c:\users\guido\onedrive\escritorio\auto-mile v3\data_management.h
+	<time.h>
+
+1718576996 c:\users\guido\onedrive\escritorio\auto-mile v3\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718599083 c:\users\guido\onedrive\escritorio\auto-mile v3\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576987 c:\users\guido\onedrive\escritorio\auto-mile v3\gotoxy.h
+
+1718576984 source:c:\users\guido\onedrive\escritorio\auto-mile v3\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718594805 source:c:\users\guido\onedrive\escritorio\auto-mile v3\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718602494 source:c:\users\guido\onedrive\escritorio\auto-mile v3\menu.c
+	"menu.h"
+
+1718595205 source:c:\users\guido\onedrive\escritorio\auto-mile v3\presentacion.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+	"pthread.h"
+	"semaphore.h"
+	"presentacion.h"
+
+1718578426 c:\users\guido\onedrive\escritorio\auto-mile v3\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718595241 source:c:\users\guido\onedrive\escritorio\auto-mile v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
