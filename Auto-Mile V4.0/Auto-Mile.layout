@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Release" />
+	<File name="menu.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15249" topLine="195" />
+		</Cursor>
+		<Folding>
+			<Collapse line="14" />
+			<Collapse line="26" />
+			<Collapse line="32" />
+			<Collapse line="67" />
+			<Collapse line="101" />
+			<Collapse line="133" />
+			<Collapse line="149" />
+			<Collapse line="185" />
+			<Collapse line="232" />
+			<Collapse line="256" />
+			<Collapse line="272" />
+			<Collapse line="288" />
+			<Collapse line="304" />
+			<Collapse line="333" />
+			<Collapse line="342" />
+			<Collapse line="522" />
+			<Collapse line="622" />
+			<Collapse line="683" />
+		</Folding>
+	</File>
+	<File name="manejo_Archivos.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="81" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="gotoxy.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="753" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="menu.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2672" topLine="36" />
+		</Cursor>
+	</File>
+	<File name="presentacion.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="609" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="data_Management.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3495" topLine="79" />
+		</Cursor>
+		<Folding>
+			<Collapse line="19" />
+			<Collapse line="83" />
+			<Collapse line="92" />
+			<Collapse line="101" />
+			<Collapse line="204" />
+			<Collapse line="217" />
+			<Collapse line="230" />
+			<Collapse line="243" />
+			<Collapse line="250" />
+			<Collapse line="396" />
+			<Collapse line="406" />
+			<Collapse line="416" />
+			<Collapse line="485" />
+			<Collapse line="518" />
+			<Collapse line="683" />
+			<Collapse line="818" />
+			<Collapse line="832" />
+			<Collapse line="950" />
+			<Collapse line="967" />
+			<Collapse line="982" />
+			<Collapse line="999" />
+			<Collapse line="1029" />
+			<Collapse line="1157" />
+			<Collapse line="1172" />
+			<Collapse line="1193" />
+			<Collapse line="1227" />
+			<Collapse line="1240" />
+			<Collapse line="1248" />
+			<Collapse line="1302" />
+			<Collapse line="1359" />
+			<Collapse line="1378" />
+			<Collapse line="1398" />
+			<Collapse line="1418" />
+			<Collapse line="1432" />
+			<Collapse line="1443" />
+			<Collapse line="1536" />
+			<Collapse line="1565" />
+			<Collapse line="1580" />
+		</Folding>
+	</File>
+	<File name="presentacion.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="100395" topLine="600" />
+		</Cursor>
+	</File>
+	<File name="main.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="382" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="manejo_Archivos.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="-3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4532" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="gotoxy.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="191" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="data_Management.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2092" topLine="75" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

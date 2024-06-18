@@ -1,0 +1,813 @@
+# depslib dependency file v1.0
+1718600252 source:c:\users\guido\onedrive\escritorio\auto-mile v3\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+
+1718600235 c:\users\guido\onedrive\escritorio\auto-mile v3\data_management.h
+	<time.h>
+
+1718576996 c:\users\guido\onedrive\escritorio\auto-mile v3\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718599083 c:\users\guido\onedrive\escritorio\auto-mile v3\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576987 c:\users\guido\onedrive\escritorio\auto-mile v3\gotoxy.h
+
+1718576984 source:c:\users\guido\onedrive\escritorio\auto-mile v3\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718594805 source:c:\users\guido\onedrive\escritorio\auto-mile v3\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718602494 source:c:\users\guido\onedrive\escritorio\auto-mile v3\menu.c
+	"menu.h"
+
+1718595205 source:c:\users\guido\onedrive\escritorio\auto-mile v3\presentacion.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	"gotoxy.h"
+	"pthread.h"
+	"semaphore.h"
+	"presentacion.h"
+
+1718578426 c:\users\guido\onedrive\escritorio\auto-mile v3\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718595241 source:c:\users\guido\onedrive\escritorio\auto-mile v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718600254 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+
+1718600236 c:\users\manu\downloads\auto-mile v3\auto-mile v3\data_management.h
+	<time.h>
+
+1718576998 c:\users\manu\downloads\auto-mile v3\auto-mile v3\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718619472 c:\users\manu\downloads\auto-mile v3\auto-mile v3\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3\gotoxy.h
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718621152 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718620855 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\menu.c
+	"menu.h"
+
+1718619472 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718619472 c:\users\manu\downloads\auto-mile v3\auto-mile v3\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718619539 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718630720 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718619472 c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\gotoxy.h
+
+1718619472 c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718629204 c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\data_management.h
+	<time.h>
+
+1718576998 c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718619472 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718630800 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+
+1718627752 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718630405 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.1\menu.c
+	"menu.h"
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718652958 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718631806 c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\gotoxy.h
+
+1718649355 c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718650974 c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\data_management.h
+	<time.h>
+
+1718652027 c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718652119 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\menu.c
+	"menu.h"
+
+1718619472 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718652281 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718652027 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.2\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+	"presentacion.h"
+
+1718670612 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+	"presentacion.h"
+
+1718667779 c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\data_management.h
+	<time.h>
+
+1718671907 c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718649355 c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\gotoxy.h
+
+1718631806 c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718671936 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718671919 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718671926 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\menu.c
+	"menu.h"
+
+1718666979 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.3\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718676928 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+	"presentacion.h"
+
+1718667779 c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\data_management.h
+	<time.h>
+
+1718671907 c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718649355 c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\gotoxy.h
+
+1718631806 c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718677268 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718677398 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\menu.c
+	"menu.h"
+
+1718666979 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718672152 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718676928 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"menu.h"
+	"presentacion.h"
+
+1718667779 c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\data_management.h
+	<time.h>
+
+1718671907 c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718649355 c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\gotoxy.h
+
+1718631806 c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718677268 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718677520 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\menu.c
+	"menu.h"
+
+1718677730 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718677640 source:c:\users\manu\downloads\auto-mile v3\auto-mile v3.5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718696848 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718696409 c:\users\guido\onedrive\escritorio\auto-mile v3.5\data_management.h
+	<time.h>
+
+1718671907 c:\users\guido\onedrive\escritorio\auto-mile v3.5\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718696531 c:\users\guido\onedrive\escritorio\auto-mile v3.5\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\guido\onedrive\escritorio\auto-mile v3.5\gotoxy.h
+
+1718631806 c:\users\guido\onedrive\escritorio\auto-mile v3.5\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718686990 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718677268 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718695752 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\menu.c
+	"menu.h"
+	"data_Management.h"
+
+1718677730 source:c:\users\guido\onedrive\escritorio\auto-mile v3.5\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718696848 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718696409 c:\users\guido\onedrive\escritorio\auto-mile v3.6\data_management.h
+	<time.h>
+
+1718671907 c:\users\guido\onedrive\escritorio\auto-mile v3.6\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718696531 c:\users\guido\onedrive\escritorio\auto-mile v3.6\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\guido\onedrive\escritorio\auto-mile v3.6\gotoxy.h
+
+1718631806 c:\users\guido\onedrive\escritorio\auto-mile v3.6\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718686990 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718677268 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718695752 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\menu.c
+	"menu.h"
+	"data_Management.h"
+
+1718696977 source:c:\users\guido\onedrive\escritorio\auto-mile v3.6\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718712725 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718712627 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\data_management.h
+	<time.h>
+
+1718671908 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718696532 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\gotoxy.h
+
+1718631808 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718708059 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718712256 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718707155 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718712667 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.6\menu.c
+	"menu.h"
+	"data_Management.h"
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718723355 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718696532 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718720235 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\data_management.h
+	<time.h>
+
+1718671908 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\gotoxy.h
+
+1718707155 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718631808 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718723612 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718723198 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\menu.c
+	"menu.h"
+	"data_Management.h"
+
+1718722939 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.7\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718727165 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\data_management.h
+	<time.h>
+
+1718727304 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718696532 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\gotoxy.h
+
+1718631808 c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718726665 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\menu.c
+	"menu.h"
+	"data_Management.h"
+
+1718707155 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v3.8\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\data_management.c
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+	"presentacion.h"
+
+1718727165 c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\data_management.h
+	<time.h>
+
+1718727304 c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\manejo_archivos.h
+	"data_Management.h"
+	"menu.h"
+
+1718696532 c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\menu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<mmsystem.h>
+	<pthread.h>
+	<time.h>
+	<ctype.h>
+	"data_Management.h"
+	"manejo_Archivos.h"
+	"gotoxy.h"
+
+1718576988 c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\gotoxy.h
+
+1718631808 c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\presentacion.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<conio.h>
+	<windows.h>
+	"gotoxy.h"
+	<mmsystem.h>
+
+1718576986 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\gotoxy.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\main.c
+	<stdio.h>
+	<stdlib.h>
+	"presentacion.h"
+	"menu.h"
+
+1718726592 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\manejo_archivos.c
+	"menu.h"
+	"data_Management.h"
+	"manejo_Archivos.h"
+
+1718707155 source:c:\users\manu\downloads\auto-mile v3.6\auto-mile v4.0\presentacion.c
+	"presentacion.h"
+	"menu.h"
+
